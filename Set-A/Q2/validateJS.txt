@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS validate Email password</title>
+</head>
+<style>
+    *
+    {
+        margin:1 0px;
+        padding:0px;
+        box-sizing: border-box;
+    }
+    .container
+    {
+        width: 400px;
+        font-family: 'poppins',sans-serif;
+        padding: 20px;
+        border: 1px solid black;
+    }
+   .input
+   {
+       width: 100%;
+       margin:0 0 10px 0;
+       font-family: 'poppins',sans-serif;
+       padding: 5px;
+   }
+   #login
+   {
+       padding: 5px;
+       font-family: 'poppins',sans-serif;
+       background-color: aqua;
+       border: none;
+
+   }
+   #errorEmail, #errorPassword
+   {
+       color: red !important;
+   }
+</style>
+<body>
+    <div class="container">
+        <div class="row">
+            <form  id="myform">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" class="input" required >
+                <div id="errorEmail"></div>
+                <label for="password">Password</label>
+                <input type="password"  class="input"
+                name="password" id="password" placeholder="Enter your password" required>
+                <div id="errorPassword"></div>
+                <button type="submit" id="login" onclick="validateform()">Login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function validateform(){
+            var form = document.getElementById('myform');
+            var email = form.email.value;
+            var password = form.password.value;
+            var regexEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-z]+)$/;
+           var regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/;
+            if(regexEmail.test(email) == false)
+            {
+                errorEmail.innerHTML="Email is not in format";
+                return false;
+            }
+            if(regexPassword.test(password) == false)
+            {
+                errorPassword.innerHTML="Password is not in format";
+                return false;
+            }
+          
+        }
+    </script>
+</body>
+</html>
